@@ -83,6 +83,9 @@ vim.opt.confirm = true
 -- jj in input mode triggers <Esc>
 vim.keymap.set('i', 'jj', '<Esc>')
 
+-- <leader>nt for toggling Neotree
+vim.keymap.set('n', '<leader>nt', '<cmd>Neotree toggle<CR>')
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
