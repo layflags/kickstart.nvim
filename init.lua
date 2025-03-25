@@ -896,25 +896,33 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require('tokyonight').setup {
-        styles = {
-          comments = { italic = false }, -- Disable italics in comments
-        },
-      }
+  { -- Solarized color theme
+    'maxmx03/solarized.nvim',
+    lazy = false,
+    priority = 1000,
+    ---@type solarized.config
+    opts = {},
+    config = function(_, opts)
+      vim.o.termguicolors = true
+      vim.o.background = 'light'
+      require('solarized').setup(opts)
+      vim.cmd.colorscheme 'solarized'
+    end,
+  },
 
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+  { -- automatically set dark/light mode based on system settings
+    'f-person/auto-dark-mode.nvim',
+    config = function()
+      require('auto-dark-mode').setup {
+        update_interval = 1000, -- Check every second
+        set_dark_mode = function()
+          vim.o.background = 'dark'
+        end,
+        set_light_mode = function()
+          vim.o.background = 'light'
+        end,
+      }
+      require('auto-dark-mode').init()
     end,
   },
 
