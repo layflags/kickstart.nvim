@@ -83,6 +83,17 @@ vim.opt.confirm = true
 -- jj in input mode triggers <Esc>
 vim.keymap.set('i', 'jj', '<Esc>')
 
+-- duplicate line on <C-d>
+vim.keymap.set('i', '<C-d>', '<Esc>yypi')
+
+-- split long lines over multiple according to textwidth
+vim.keymap.set('v', 'Q', 'gq')
+vim.keymap.set('n', 'Q', 'gqap')
+
+-- navigate long wrapped lines
+vim.keymap.set('n', '<C-j>', 'gj')
+vim.keymap.set('n', '<C-k>', 'gk')
+
 -- <leader>nt for toggling Neotree
 vim.keymap.set('n', '<leader>nt', '<cmd>Neotree toggle<CR>')
 
